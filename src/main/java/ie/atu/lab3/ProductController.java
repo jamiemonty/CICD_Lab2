@@ -30,19 +30,29 @@ import java.util.List;
         }
 
         @PutMapping("/{id}")
-        public String updateProduct(@PathVariable int id, @RequestBody Product product)
-        {
-            return "Product is being updated";
+        public ResponseEntity<List> editProduct(@PathVariable int id, @RequestBody Product product) {
+            int num = (int) id;
+
+            for (int count = 0; count < products.size(); count++) {
+                if (products.get(count).getId() == num)
+                    products.set(count, product);
+            }
+            return ResponseEntity.ok(products);
         }
 
+
+
         @DeleteMapping("/{id}")
-        public ResponseEntity deletedProduct(@PathVariable long id){
+        public ResponseEntity<List> deletedProduct(@PathVariable long id){
         int num = (int) id;
 
         for (int count = 0; count < products.size(); count++)
         {
-            if(products.get(count).getId() == num)(products.remove((count);
+            if(products.get(count).getId() == num)
+                products.remove(count);
         }
+        return ResponseEntity.ok(products);
         }
+
     }
 
