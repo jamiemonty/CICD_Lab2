@@ -3,10 +3,7 @@ package ie.atu.lab3;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,4 +28,21 @@ import java.util.List;
             products.add(product);
             return ResponseEntity.ok(products);
         }
+
+        @PutMapping("/{id}")
+        public String updateProduct(@PathVariable int id, @RequestBody Product product)
+        {
+            return "Product is being updated";
+        }
+
+        @DeleteMapping("/{id}")
+        public ResponseEntity deletedProduct(@PathVariable long id){
+        int num = (int) id;
+
+        for (int count = 0; count < products.size(); count++)
+        {
+            if(products.get(count).getId() == num)(products.remove((count);
+        }
+        }
     }
+
